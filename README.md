@@ -800,7 +800,7 @@ Avant de rendre votre travail, vérifiez :
 - Variables : `variable="valeur"`, accès avec `$variable`
 - Tests : `[ condition ]` ou `[[ condition ]]`
 - Comparaisons numériques : `-eq`, `-ne`, `-lt`, `-le`, `-gt`, `-ge`
-- Comparaisons chaînes : `=`, `!=`
+- Comparaisons chaînes : `==`, `!=` et condition à mettre entre `[[ condition ]]`
 - Tests fichiers : `-f` (fichier), `-d` (répertoire), `-e` (existe), `-r` (lisible)
 - Boucles : `for`, `while`, `until`
 - Conditions : `if`, `elif`, `else`
