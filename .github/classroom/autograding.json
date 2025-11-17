@@ -1,0 +1,34 @@
+{
+  "tests": [
+    {
+      "name": "Exercice 1",
+      "setup": "chmod +x Exos/ex1/*.sh",
+      "run": "cd Exos/ex1 && ./test_ex1.sh",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 5
+    },
+    {
+      "name": "Exercice 2",
+      "setup": "chmod +x Exos/ex2/*.sh",
+      "run": "cd Exos/ex2 && ./test_ex2.sh",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 10
+    },
+    {
+      "name": "Exercice 3",
+      "setup": "chmod +x Exos/ex3/*.sh",
+      "run": "cd Exos/ex3 && ./test_ex3.sh",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 5
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+# Propriétaires du code
+# Les modifications de ces fichiers nécessitent une review de l'enseignant
+
+# Scripts de test - Protégés contre les modifications étudiantes
+# Option 1 : Utilisateur individuel
+/Exos/*/test_*.sh @j-serrand
+/run_all_tests.sh @j-serrand
+/.github/ @j-serrand
+
+# Option 2 : Équipe d'enseignants (décommentez si vous avez une équipe)
+# /Exos/*/test_*.sh @ciel-ir-rascol/enseignants
+# /run_all_tests.sh @ciel-ir-rascol/enseignants
+# /.github/ @ciel-ir-rascol/enseignants
+
+# Documentation du TP (optionnel - décommentez si vous voulez protéger)
+# /README.md @j-serrand

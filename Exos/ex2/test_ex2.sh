@@ -92,7 +92,7 @@ fi
 echo ""
 echo "Test 5 : Vérification des indications (trop grand/petit)..."
 # On force un nombre fixe en patchant temporairement RANDOM
-OUTPUT=$(echo -e "1\n100\n100\n100\n100" | ./devine_nombre.sh 1 100 2>&1)
+OUTPUT=$(echo -e "1\n10000\n10000\n10000\n10000" | ./devine_nombre.sh 1 10000 2>&1)
 if echo "$OUTPUT" | grep -qiE "(trop|grand|petit|plus|moins)"; then
     print_test_result "Le script donne des indications sur la direction" "PASS"
 else

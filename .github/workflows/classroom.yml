@@ -1,0 +1,24 @@
+name: GitHub Classroom Workflow
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  grading:
+    name: Autograding
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Autograding
+        uses: education/autograding@v1
+        continue-on-error: true

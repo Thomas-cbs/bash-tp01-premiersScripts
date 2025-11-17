@@ -1,0 +1,113 @@
+name: Autograding Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Tests automatiques
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout du code
+      uses: actions/checkout@v4
+
+    - name: Afficher les fichiers présents
+      run: |
+        echo "Structure du projet :"
+        ls -la
+        echo ""
+        echo "Contenu du dossier Exos :"
+        ls -la Exos/ || echo "Dossier Exos non trouvé"
+
+    - name: Rendre les scripts exécutables
+      run: |
+        chmod +x run_all_tests.sh
+        find Exos -name "*.sh" -type f -exec chmod +x {} \;
+
+    - name: Test Exercice 1
+      id: ex1
+      run: |
+        echo "=========================================="
+        echo "Test de l'exercice 1"
+        echo "=========================================="
+        cd Exos/ex1
+        bash test_ex1.sh
+      continue-on-error: true
+
+    - name: Test Exercice 2
+      id: ex2
+      run: |
+        echo "=========================================="
+        echo "Test de l'exercice 2"
+        echo "=========================================="
+        cd Exos/ex2
+        bash test_ex2.sh
+      continue-on-error: true
+
+    - name: Test Exercice 3
+      id: ex3
+      run: |
+        echo "=========================================="
+        echo "Test de l'exercice 3"
+        echo "=========================================="
+        cd Exos/ex3
+        bash test_ex3.sh
+      continue-on-error: true
+
+    - name: Lancer tous les tests (Vue d'ensemble)
+      run: |
+        echo ""
+        echo "=========================================="
+        echo "RÉSUMÉ GLOBAL"
+        echo "=========================================="
+        ./run_all_tests.sh
+      continue-on-error: true
+
+    - name: Résumé des résultats
+      if: always()
+      run: |
+        echo ""
+        echo "=========================================="
+        echo "STATUT FINAL"
+        echo "=========================================="
+
+        # Compter les succès
+        success_count=0
+
+        if [ "${{ steps.ex1.outcome }}" == "success" ]; then
+          echo "✅ Exercice 1 : RÉUSSI"
+          ((success_count++))
+        else
+          echo "❌ Exercice 1 : ÉCHOUÉ"
+        fi
+
+        if [ "${{ steps.ex2.outcome }}" == "success" ]; then
+          echo "✅ Exercice 2 : RÉUSSI"
+          ((success_count++))
+        else
+          echo "❌ Exercice 2 : ÉCHOUÉ"
+        fi
+
+        if [ "${{ steps.ex3.outcome }}" == "success" ]; then
+          echo "✅ Exercice 3 : RÉUSSI"
+          ((success_count++))
+        else
+          echo "❌ Exercice 3 : ÉCHOUÉ"
+        fi
+
+        echo ""
+        echo "Score : $success_count/3 exercices validés"
+        echo ""
+
+        # Échec si tous les exercices n'ont pas réussi
+        if [ $success_count -ne 3 ]; then
+          echo "⚠️ Certains tests ont échoué. Vérifiez les logs ci-dessus."
+          exit 1
+        else
+          echo "🎉 Tous les tests sont passés avec succès !"
+        fi
