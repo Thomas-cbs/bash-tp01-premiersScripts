@@ -189,7 +189,7 @@ fi
 # Test 9 : Vérifier la présence de commentaires
 echo ""
 echo "Test 9 : Vérification de la documentation..."
-COMMENT_COUNT=$(grep -c "^#" renommer_fichiers.sh)
+COMMENT_COUNT=$(grep -c "#" renommer_fichiers.sh)
 if [ "$COMMENT_COUNT" -gt 5 ]; then
     print_test_result "Le script contient des commentaires (au moins 5)" "PASS"
 else

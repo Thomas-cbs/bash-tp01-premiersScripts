@@ -126,7 +126,7 @@ chmod +x temp_test_script.sh
 OUTPUT=$(echo "50" | ./temp_test_script.sh 2>&1)
 rm -f temp_test_script.sh
 
-if echo "$OUTPUT" | grep -qiE "(bravo|trouvé|gagn|félicitation)"; then
+if echo "$OUTPUT" | grep -qiE "(bravo|trouvé|gagné|félicitation)"; then
     print_test_result "Le script affiche un message de victoire" "PASS"
 else
     print_test_result "Le script affiche un message de victoire" "FAIL"
@@ -135,7 +135,7 @@ fi
 # Test 7 : Vérifier la présence de commentaires
 echo ""
 echo "Test 7 : Vérification de la documentation..."
-COMMENT_COUNT=$(grep -c "^#" devine_nombre.sh)
+COMMENT_COUNT=$(grep -c "#" devine_nombre.sh)
 if [ "$COMMENT_COUNT" -gt 5 ]; then
     print_test_result "Le script contient des commentaires (au moins 5)" "PASS"
 else

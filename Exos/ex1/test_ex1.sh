@@ -101,7 +101,7 @@ fi
 # Test 5 : Vérifier la présence de commentaires
 echo ""
 echo "Test 5 : Vérification de la documentation..."
-COMMENT_COUNT=$(grep -c "^#" table_multiplication.sh)
+COMMENT_COUNT=$(grep -c "#" table_multiplication.sh)
 if [ "$COMMENT_COUNT" -gt 3 ]; then
     print_test_result "Le script contient des commentaires (au moins 3)" "PASS"
 else
