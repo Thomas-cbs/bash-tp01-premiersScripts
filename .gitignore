@@ -1,0 +1,17 @@
+# Fichiers temporaires de tests
+test_temp/
+*.log
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers VSCode (optionnel - décommenter si vous ne voulez pas versionner la config VSCode)
+# .vscode/
+
+# Sauvegardes d'éditeurs
+*~
+*.swp
+*.swo
+.*.swp
+.claude
