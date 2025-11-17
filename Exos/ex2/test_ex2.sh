@@ -81,7 +81,7 @@ fi
 echo ""
 echo "Test 4 : Exécution avec deux paramètres valides..."
 # On simule 5 mauvaises réponses pour perdre
-OUTPUT=$(echo -e "999\n999\n999\n999\n999" | ./devine_nombre.sh 1 100 2>&1)
+OUTPUT=$(echo -e "99\n99\n99\n99\n99" | ./devine_nombre.sh 1 100 2>&1)
 if echo "$OUTPUT" | grep -qiE "(essai|tentative|restant)"; then
     print_test_result "Le script gère les essais correctement" "PASS"
 else
