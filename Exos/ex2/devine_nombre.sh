@@ -14,35 +14,50 @@ if [ "$#" -ne 2 ]; then
     echo "Usage: $0 <paramètre1> <paramètre2>"
     exit 1
 fi
-$essais=0
-$nb_aleatoire=0
-$essais_restant=0
-$test=0
-# TODO: Valider que les paramètres sont des nombres
-if [[ "$1" =~ ^[0-9]+$ ]]; then
-    
-    if [ $1 -lt $2 ]; then
-        nb_aleatoire=$(($1 + RANDOM % $2))
+
+if [ $1 -lt $2 ]; then
+    $essais=0
+    $nb_aleatoire=0
+    $essais_restant=0
+    $test=0
+
+    $etat_win=0
+    # TODO: Valider que les paramètres sont des nombres
+    if [[ "$1" =~ ^[0-9]+$ ]]; then
+        
+        if [ $1 -lt $2 ]; then
+            nb_aleatoire=$(($1 + RANDOM % $2))
 
 
-        i=0 
-        until [ $i -gt 5 ]; do 
-            essais_restant=$((5-$1))
-            echo "essayer de deviner le nombre entre $1 et $2 , il vous reste $i essaie(s) :" 
-            i=$(($i+1))
-            read test
-            if [ $1 -lt $2 ]; do
+            i=0 
+            until [[ $i -gt 5 &&  $etat_win=0 ]]; do 
+                essais_restant=$((5-$1))
+                echo "essayer de deviner le nombre entre $1 et $2 , il vous reste $i essaie(s) :" 
+                i=$(($i+1))
+                read test
+                if [ $test -eq $nb_aleatoire ];then
+                    echo "GG tu a gagné"
+                    $etat_win=1
+                fi
 
-        done 
 
+
+            done
+
+
+
+        else
+            echo "le premier paramétre doit etre un nombre stictement plue petit que le deuxiéme"
+        fi
 
     else
-        echo "le premier paramétre doit etre un nombre stictement plue petit que le deuxiéme"
+        echo "saissisez un entier valide."
     fi
-
-else
-    echo "saissisez un entier valide."
 fi
+else
+    echo "le paramétre 1 est plus grand que le paramétre deux !"
+
+
 
 # TODO: Valider que min < max
 
