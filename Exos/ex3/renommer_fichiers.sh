@@ -22,16 +22,17 @@ if [ -d "$1" ]; then
 
 
     # Lister uniquement les fichiers .txt 
-    ls *.txt
-    dossier=$1
-    for fichier in $dossier/*.txt; do
+    cd $1
+    ls
+    for fichier in *.txt; do
         echo "$fichier"
+        
         nom_base="${fichier%.txt}"
         nouveau_nom=$(echo "$nom_base" | tr ' ' '_' | tr '[:upper:]' '[:lower:]')
         nouveau_nom="$date-$nouveau_nom.txt"
-        mv "$fichier" "$dossier/$nouveau_nom"
+        mv "$fichier" "$nouveau_nom"
         echo "le $fichier a été renommé en --> $nouveau_nom"
-    done
+    done 
 
 else
     echo "Erreur : '$1' n'est pas un dossier valide ou n'existe pas."
